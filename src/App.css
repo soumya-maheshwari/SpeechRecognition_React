@@ -9,9 +9,31 @@
 
 .container {
   text-align: center;
-  padding: 20px;
+  padding: 60px;
   background-color: #333;
   color: white;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+.para {
+  max-width: 50rem;
+  width: 100%;
+  min-height: 200px;
+  height: auto;
+  /* position: relative; */
+  /* resize: none; */
+  box-shadow: 0 12px 48px 0px rgb(229, 223, 223);
+  background: rgb(255 255 255);
+  border: 0.5px solid rgb(231 233 245);
+  border-radius: 16px;
+  color: black;
+  font-size: 22px;
 }
 .btns {
   margin: 10px;

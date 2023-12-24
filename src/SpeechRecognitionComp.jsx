@@ -1,28 +1,49 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
+import microphoneImg from "../src/assets/microphone.png";
+import useClipboard from "react-use-clipboard";
+import muteImg from "./assets/mute.png";
 
 const SpeechRecognitionComp = () => {
+  const [text, setText] = useState("");
+  const [isListening, setListening] = useState(false);
+  const [isCopied, setCopied] = useClipboard(text);
   const { transcript, browserSupportsSpeechRecognition, resetTranscript } =
     useSpeechRecognition();
-  console.log(transcript);
+
+  useEffect(() => {
+    setText(transcript);
+  }, [transcript]);
 
   if (!browserSupportsSpeechRecognition) {
     return <span>Browser doesn't support speech recognition.</span>;
   }
 
+  const handleToggleListening = () => {
+    if (isListening) {
+      SpeechRecognition.stopListening();
+    } else {
+      SpeechRecognition.startListening();
+    }
+    setListening(!isListening);
+  };
+
   return (
     <div className="container">
-      <h1>Speech to Text convertor</h1>
+      <h1>Speech to Text converter</h1>
       <div>
-        <p>{transcript}</p>
-        <button className="btns">copy</button>
-        <button className="btns" onClick={SpeechRecognition.startListening}>
-          Start Listening
+        <p className="para">{transcript}</p>
+        <button className="btns" onClick={setCopied}>
+          {isCopied ? "Copied!" : "Copy to clipboard"}
         </button>
-        <button className="btns" onClick={SpeechRecognition.stopListening}>
-          Stop Listening
+        <button className="btns" onClick={handleToggleListening}>
+          {isListening ? (
+            <img src={muteImg} className="icon" alt="Mute" />
+          ) : (
+            <img src={microphoneImg} className="icon" alt="Microphone" />
+          )}
         </button>
         <button className="btns" onClick={resetTranscript}>
           Reset
