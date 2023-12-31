@@ -35,19 +35,22 @@ const SpeechRecognitionComp = () => {
       <h1>Speech to Text converter</h1>
       <div>
         <p className="para">{transcript}</p>
-        <button className="btns" onClick={setCopied}>
-          {isCopied ? "Copied!" : "Copy to clipboard"}
-        </button>
-        <button className="btns" onClick={handleToggleListening}>
-          {isListening ? (
-            <img src={muteImg} className="icon" alt="Mute" />
-          ) : (
-            <img src={microphoneImg} className="icon" alt="Microphone" />
-          )}
-        </button>
-        <button className="btns" onClick={resetTranscript}>
-          Reset
-        </button>
+
+        <div className="btns">
+          <button className="btn" onClick={setCopied}>
+            {isCopied ? "Copied!" : "Copy to clipboard"}
+          </button>
+          <button className="btn" onClick={handleToggleListening}>
+            {isListening ? (
+              <img src={muteImg} className="icon" alt="Mute" />
+            ) : (
+              <img src={microphoneImg} className="icon" alt="Microphone" />
+            )}
+          </button>
+          <button className="btn" onClick={resetTranscript}>
+            Reset
+          </button>
+        </div>
       </div>
     </div>
   );
